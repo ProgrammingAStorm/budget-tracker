@@ -144,6 +144,14 @@ function sendTransaction(isAdding) {
   });
 }
 
+function saveRecord(record) {
+  const transaction = db.transaction(['new_transaction'], 'readwrite');
+
+  const transactionObjectStore = transaction.objectStore('new_transaction');
+
+  transactionObjectStore.add(record);
+}
+
 document.querySelector("#add-btn").onclick = function() {
   sendTransaction(true);
 };
